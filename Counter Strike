@@ -1,0 +1,29 @@
+function counterStrike(input) {
+    let energy = Number(input.shift());
+    let numWins = 0;
+    let line;
+    let isNoEnergy = false;
+    while ((line = input.shift()) !== "End of battle") {
+        line = Number(line);
+        if (energy >= line) {
+            energy -= line;
+            numWins++;
+            if (numWins % 3 == 0) {
+                energy += numWins;
+            }
+            if (energy < 0) {
+                isNoEnergy = true;
+                break;
+            }
+
+        } else {
+            isNoEnergy = true;
+            break;
+        }
+    }
+    if (isNoEnergy) {
+        console.log(`Not enough energy! Game ends with ${numWins} won battles and ${energy} energy`);
+    } else {
+        console.log(`Won battles: ${numWins}. Energy left: ${energy}`)
+    }
+}
